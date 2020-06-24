@@ -1,0 +1,35 @@
+<%-include('../includes/head.ejs')%>
+<link rel="stylesheet" href="/css/product.css ">
+
+</head>
+
+<body>
+    <%-include('../includes/navigation.ejs')%>
+
+    <main>
+        <% if (students.length > 0) { %>
+        <div class="grid">
+            <% for (let student of students){ %>
+            <article class="card product-item">
+                <header class="card__header">
+                    <h1 class="product__title"><%= student.name %></h1>
+                </header>
+                <div class="card__content">
+                    <h2 class="product__price">$ <%= student.address %></h2>
+                </div>
+                <div class="card__actions">
+                    <a href="/admin/edit-student/<%= student.id %>?editStudent=true" class="btn">Edit</a>
+                    <form action="/admin/delete-student" method="POST">
+                        <input type="hidden" value="<%= student.id %>" name="studentId">
+                        <button class="btn">Delete</button>
+                    </form>
+
+                </div>
+            </article>
+            <% } %>
+        </div>
+        <% }  else {%>
+        <h1>No Product Found !</h1>
+        <% } %>
+    </main>
+    <%-include('../includes/end.ejs')%>
