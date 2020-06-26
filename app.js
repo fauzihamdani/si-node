@@ -6,10 +6,14 @@ const path = require('path');
 const router = express.Router();
 const sequelize = require('./utils/database');
 const User = require('./models/user');
+const Student = require('./models/student');
+const Thread = require('./models/thread');
 app.use(router);
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
+// app.use(Student);
 
 adminRoutes = require('./routes/admin');
 schoolRoutes = require('./routes/school');
@@ -23,17 +27,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/admin', adminRoutes);
 app.use(schoolRoutes);
-
-// app.use(errorController.get404);
-sequelize.sync();
-// .sync({
-//   force: true,
-// });
-// .then((result) => {
-//     // console.log(result);
-
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
 app.listen(5000);

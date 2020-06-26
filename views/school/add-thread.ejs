@@ -1,0 +1,39 @@
+<%-include('../includes/head.ejs')%>
+<link rel="stylesheet" href="/css/product.css ">
+
+</head>
+  </head>
+  <body>
+    <%-include('../includes/navigation.ejs')%>
+    <form class="form-horizontal">
+      <fieldset>
+        <legend>Add Thread</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput"
+            >Tour Thread</label
+          >
+          <div class="col-md-4">
+            <textarea id="w3review" name="w3review" "></textarea>
+          </div>
+        </div>
+              <div class="input-group-btn">
+                <select name="cars" id="cars">
+                  <option value="volvo">Volvo</option>
+                  <option value="saab">Saab</option>
+                  <option value="mercedes">Mercedes</option>
+                  <option value="audi">Audi</option>
+                </select>
+                <br /><br /><br /><br />
+                <button type="submit">SUBMIT</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  
+<%-include('../includes/end.ejs')%>
+</html>
+

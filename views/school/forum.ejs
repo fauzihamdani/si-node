@@ -1,0 +1,22 @@
+    <%-include('../includes/head.ejs')%>
+    </head>
+
+    <body>
+        <%-include('../includes/navigation.ejs') %>
+        <main>
+            <% if(threads.length <= 0) {%>
+            
+                <h1>Nothing There</h1>
+            
+            <%} else{ %>
+            <ul>
+                <% threads.forEach( thread=> {%>
+                    <li>
+                        <h1># <%= thread.content %></h1>
+                        
+                    </li>
+                <% }); %>
+            </ul>
+            <% } %>
+        </main>
+        <%-include('../includes/end.ejs')%>

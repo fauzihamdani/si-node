@@ -1,4 +1,5 @@
 const Student = require('../models/student');
+const Thread = require('../models/thread');
 
 exports.getAddStudent = (req, res, next) => {
   res.render('admin/edit-student', {
