@@ -27,8 +27,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/admin', adminRoutes);
 app.use(schoolRoutes);
+
+// sequelize.sync({ force: true });
 sequelize
    .sync()
+   .then((result) => {
+      return Student.findByPk(1);
+   })
    .then((student) => {
       if (!student) {
          return Student.create({
@@ -38,9 +43,9 @@ sequelize
       }
       return student;
    })
+   .then(() => {})
    .catch((err) => console.log(err));
-
-Student.hasMany(Thread, { onDelete: 'CASCADE' });
-Thread.belongsTo(Student);
-
 app.listen(5000);
+
+Student.hasMany(Thread, { onDelete: 'CASCADE', constraints: true });
+Thread.belongsTo(Student);

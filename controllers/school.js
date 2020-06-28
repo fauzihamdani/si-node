@@ -1,5 +1,6 @@
 const Student = require('../models/student');
 const Thread = require('../models/thread');
+const sequelize = require('../utils/database');
 
 exports.getIndex = (req, res, next) => {
    Student.findAll()
@@ -16,22 +17,27 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getThread = (req, res, next) => {
-   Student.findAll({ attributes: ['id'] })
-      .then(
-         Thread.findAll().then((threads) => {
-            res.render('school/forum', {
-               threads: threads,
-               pageTitle: 'Forum',
-               path: '/forum',
-            });
-         })
-      )
-      .catch((err) => {
-         console.log(err);
+   Thread.findByPk(2)
+      .then((thread) => {
+         b = thread.get({ plain: true });
+         Student.findByPk(b.studentId).then((result) => {
+            // console.log(result.name);
+            console.log(thread.content);
+         });
       })
-
+      // .then((result) => {
+      //    b = result.get({ plain: true });
+      //    Student.findByPk(b.studentId);
+      //    console.log(result.name);
+      // })
       .catch((err) => console.log(err));
 };
+
+// res.render('school/forum', {
+//    threads: threads,
+//    pageTitle: 'Forum',
+//    path: '/forum',
+// });
 
 exports.getAddThread = (req, res, next) => {
    Student.findAll()
