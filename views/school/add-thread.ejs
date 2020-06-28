@@ -1,39 +1,41 @@
 <%-include('../includes/head.ejs')%>
-<link rel="stylesheet" href="/css/product.css ">
-
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/forms.css">
 </head>
-  </head>
-  <body>
-    <%-include('../includes/navigation.ejs')%>
-    <form class="form-horizontal">
-      <fieldset>
-        <legend>Add Thread</legend>
 
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="textinput"
-            >Tour Thread</label
-          >
-          <div class="col-md-4">
-            <textarea id="w3review" name="w3review" "></textarea>
-          </div>
-        </div>
-              <div class="input-group-btn">
-                <select name="cars" id="cars">
-                  <option value="volvo">Volvo</option>
-                  <option value="saab">Saab</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="audi">Audi</option>
-                </select>
-                <br /><br /><br /><br />
-                <button type="submit">SUBMIT</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  
+
+<%-include('../includes/navigation.ejs')%>
+
+<main>
+  <form class="product-form" action="/<% if (editing){%>edit-thread<%}else{ %>add-thread<% }%>" method="POST">
+    <div class="form-control">
+      <label for="title">Content</label>
+      <textarea id="w3review" name="content" rows="4" cols="50"></textarea>
+      <!-- <input type="text" name="name" id="content" value="<% if (editing) { %> <%=student.name%> <% } %>"> -->
+    </div>
+    <div class="form-control">
+      <label for="cars">Choose User:</label>
+      
+      <select name="studentId" id="cars">
+        <%if (students.length > 0){%>
+          <% for(let student of students){%>
+            <option value="<%=student.id%>"><%=student.name%></option>
+          <%}%>
+        <%}%>
+        
+        <!-- <option value="saab">Saab</option> -->
+        
+      </select>
+
+        <% if(editing) {%>
+
+        <!--<input type=" hidden" value="<%= student.id %>" name="studentId"> -->
+      <input type="hidden" value="<%= student.id %>" name="studentId">
+      <% } %>
+      <br><br>
+      <button class="btn" type="submit"><% if(editing) { %> Update student<% } else{ %>Add student
+        <% } %></button>
+    </div>
+  </form>
+</main>
 <%-include('../includes/end.ejs')%>
-</html>
-
