@@ -49,3 +49,6 @@ app.listen(5000);
 
 Student.hasMany(Thread, { onDelete: 'CASCADE', constraints: true });
 Thread.belongsTo(Student);
+
+
+//haloo
